@@ -1,0 +1,7 @@
+- Functiile kernel de ar trebui sa parcurga matricele de diferite tipuri pentru a se putea aplica difertile filtre date
+ca parametru inca NU parcurg bine matricele si se obtin discrepante minimale intre output-ul programului si raspunsul asteptat
+
+- Restul functiilor par sa functioneze conform asteptarilor
+
+- Functia de ROTATE va fi folosita pe un nou branch special, intrucat la ultimele testari a corupt outputul asteptat pentru restul
+functiilor si fisierul incarcat.
