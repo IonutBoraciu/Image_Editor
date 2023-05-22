@@ -13,7 +13,8 @@ Exista urmatoarele comenezi :
   - ROTATE
   - APPLY
   - EXIT
- Acestea trebuie apelate in urmatorul fel : 
+
+Acestea trebuie apelate in urmatorul fel : 
   - LOAD : asteapta sa primeasca ca parametru o imagine ppm sau pgm stocata in ascii sau in binar
     Exemplu apelare: LOAD imagine1.ppm
   - SELECT : selecteaza o zona VALIDA din imaginea incarcata asupra careia va EFECTUA urmatoarele operatii
