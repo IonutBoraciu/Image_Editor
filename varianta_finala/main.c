@@ -4,6 +4,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
+#define DIE(assertion, call_description)				\
+	do {								\
+		if (assertion) {					\
+			fprintf(stderr, "(%s, %d): ",			\
+					__FILE__, __LINE__);		\
+			perror(call_description);			\
+			exit(errno);				        \
+		}							\
+	} while (0)
+
 struct image {
 	char magicknumber[3];
 	int height, width;
@@ -35,16 +46,10 @@ void malloc_matrix_int(int ***mat, int height, int width)
 	//aloc dinamic o matrice de tip int
 	//si verific daca a fost alocata cu succes
 	*mat = malloc(height * sizeof(int *));
-	if ((*mat) == NULL) {
-		printf("Malloc failed\n");
-		exit(1);
-	}
+	DIE(!(*mat),"mat malloc failed\n");
 	for (int i = 0; i < height; i++) {
 		(*mat)[i] = malloc(width * sizeof(int));
-		if ((*mat)[i] == NULL) {
-			printf("Malloc failled\n");
-			exit(1);
-		}
+		DIE(!(*mat)[i],"malloc for mat failed\n");
 	}
 }
 
@@ -53,16 +58,10 @@ void malloc_matrix_binary(unsigned char ***mat, int height, int width)
 	//aloc dinamic o matrice de tip unsigned char
 	//si verific daca a fost alocata cu succes
 	*mat = malloc(height * sizeof(unsigned char *));
-	if ((*mat) == NULL) {
-		printf("Malloc failled\n");
-		exit(1);
-	}
+	DIE(!(*mat),"mat malloc failed\n");
 	for (int i = 0; i < height; i++) {
 		(*mat)[i] = malloc(width * sizeof(unsigned char));
-		if ((*mat)[i] == NULL) {
-			printf("Malloc failed\n");
-			exit(1);
-		}
+		DIE(!(*mat)[i],"malloc for mat failed\n");
 	}
 }
 
