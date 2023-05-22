@@ -107,4 +107,8 @@ void histogram(struct image *file)
 		}
 	}
 }
+int main(void)
+{
+    return 0;
+}
 
