@@ -172,7 +172,86 @@ void rotate_int_right2(struct image *file, int check_if_select)
 	else
 		free_matrix_int(&rotate, file->width);
 }
+void rotate(struct image *file, int check_if_select)
+{
+	int angle;
+	scanf("%d", &angle);
+	int already_print = 0;
+	if (angle == 0)
+		printf("Rotated 0\n"), already_print = 1;
+	if (angle % 90 == 0 && angle != 0) {
+		int ok = 0, old_angle;
+		old_angle = angle;
+		if (angle < 0)
+			ok = 1;
 
+		while (angle < 0)
+			angle = angle + 360;
+		if (old_angle == -360) {
+			printf("Rotated -360\n");
+			already_print = 1;
+		}
+
+		if ((((file->y2 - file->y1) == (file->x2 - file->x1) &&
+			  check_if_select == 1) ||
+			check_if_select == 0) &&
+		   already_print == 0) {
+			if (file->magicknumber[1] == '2') {
+				//pentru a rotii o zona selectata sau toata imaginea
+				//cu mai mult de 90 de grade, apelez functia rotate
+				//de mai multe ori
+				while (angle != 0 && angle > 0) {
+					rotate_int_to_right(file, check_if_select);
+					if (check_if_select == 0) {
+						file->x2 = file->width;
+						file->y2 = file->height;
+					}
+					angle = angle - 90;
+				}
+			}
+
+		if (file->magicknumber[1] == '5')
+			while (angle != 0 && angle > 0) {
+				rotate_binary_to_right(file, check_if_select);
+				if (check_if_select == 0) {
+					file->x2 = file->width;
+					file->y2 = file->height;
+				}
+
+				angle = angle - 90;
+			}
+
+		if (file->magicknumber[1] == '6')
+			while (angle != 0 && angle > 0) {
+				rotate_binary_right2(file, check_if_select);
+				if (check_if_select == 0) {
+					file->x2 = file->width;
+					file->y2 = file->height;
+				}
+				angle = angle - 90;
+			}
+
+		if (file->magicknumber[1] == '3')
+			while (angle != 0) {
+				rotate_int_right2(file, check_if_select);
+				if (check_if_select == 0) {
+					file->x2 = file->width;
+					file->y2 = file->height;
+				}
+				angle = angle - 90;
+			}
+		if (ok && old_angle != -360)
+			printf("Rotated %d\n", old_angle);
+		else
+			printf("Rotated %d\n", old_angle);
+
+		} else if (angle != 0) {
+			printf("The selection must be square\n");
+		}
+	} else if (angle != 0) {
+		printf("Unsupported rotation angle\n");
+	}
+}
 
 int main()
 {
