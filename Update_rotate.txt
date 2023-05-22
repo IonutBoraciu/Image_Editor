@@ -1,0 +1,2 @@
+Urmatoarele functii par sa functioneze corespunzator dar voi continua sa le mai supun asupra unor teste pana
+le voi da push pe main, pentru a fi sigur ca am rezolvat problema coruperii matricei
