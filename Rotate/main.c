@@ -126,6 +126,52 @@ void rotate_binary_right2(struct image *file, int check_if_select)
 	else
 		free_matrix_binary(&rotate, file->width);
 }
+void rotate_int_right2(struct image *file, int check_if_select)
+{
+	int **rotate;
+	int n = file->y2 - file->y1;
+	int m = file->x2 - file->x1;
+	malloc_matrix_int(&rotate, file->width, file->height * 3);
+	for (int i = file->y1; i < file->y2; i++) {
+		for (int j = file->x1; j < file->x2; j++) {
+			for (int k = 0; k < 3; k++)
+				rotate[j][(file->y2 - (i - file->y1) - 1) * 3 + k] =
+				file->mat_int[i][j * 3 + k];
+		}
+	}
+
+	if (check_if_select == 0) {
+		free_matrix_int(&file->mat_int, file->height);
+		file->height = m;
+		file->width = n;
+		malloc_matrix_int(&file->mat_int, file->height, file->width * 3);
+	}
+
+	if (check_if_select == 0) {
+		for (int i = file->x1; i < file->x2; i++) {
+			for (int j = file->y1; j < file->y2; j++) {
+				for (int k = 0; k < 3; k++)
+					file->mat_int[i][j * 3 + k] = rotate[i][j * 3 + k];
+			}
+		}
+	} else {
+		int i2 = file->x1;
+		int j2 = file->y1;
+		for (int i = file->y1; i < file->y2; i++) {
+			j2 = file->y1;
+			for (int j = file->x1; j < file->x2; j++) {
+				for (int k = 0; k < 3; k++)
+					file->mat_int[i][j * 3 + k] = rotate[i2][j2 * 3 + k];
+				j2 = j2 + 1;
+			}
+			i2 = i2 + 1;
+		}
+	}
+	if (check_if_select == 0)
+		free_matrix_int(&rotate, file->height);
+	else
+		free_matrix_int(&rotate, file->width);
+}
 int main()
 {
     printf("Hello world!\n");
