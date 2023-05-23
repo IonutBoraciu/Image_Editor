@@ -21,7 +21,7 @@ Acestea trebuie apelate in urmatorul fel :
  pana cand se apeleaza SELECT ALL care readuce focus-ul asupra intregii matrici, daca este selectata o zona
  invalida va fi afisat un mesaj corespunzator.
     Exemplu apelare: SELECT SELECT 0 0 300 300
-  - HISTOGRAM : nu are nevoie de un parametru, va calcula histograma matricei din memorie. Atentie!!
+  - HISTOGRAM : are nevoie de 2 parametrii: numarul de bin-uri folosite si numarul maxim de stelute permise , va calcula histograma matricei din memorie. Atentie!!
 functia functioneaza strict pe imaginele pgm, daca se apeleaza asupra unei imagine ppm atunci se va afisa
 un mesaj de eroare corespuznator
   - EQUALIZE : similara cu HISTOGRAM, are nevoie de o imagine alb negru si nu asteapta alt parametru, va egaliza
